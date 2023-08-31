@@ -1,0 +1,19 @@
+{
+  "name": "winterbells",
+  "version": "1.0.0",
+  "description": "This app invites you to the magic of xmas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./dist/style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "github.com/maurolps/winterbells"
+  },
+  "author": "maurolps",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
+  }
+}
