@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.cdnfonts.com/css/revans" rel="stylesheet">
+  <script src="script.js" defer></script>
   <title>Winterbells</title>
 </head>
 <body class = "min-h-screen flex flex-col">
@@ -19,7 +20,7 @@
         </div>
         <div class="">
           <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">THE BELLS WILL RING IN</p>
-          <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">10 DAYS</p>
+          <p id="days-left" class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">10 DAYS</p>
         </div>
       </div>
       <div class="container text-center my-5 font-semibold">
@@ -27,8 +28,8 @@
         <form>
           <div class="my-2 text-xs text-center">
             <input type="text" id="checkin" name="checkin" placeholder="Name"
-            class="p-1 ml-12 border-b-2 font-['revans'] text-xl border-gray-300 rounded-md focus:outline-none focus:border-red-500 text-center">
-            <button type="button" class="m-2 font-['revans'] text-2xl" disabled>GO</button>
+            class="p-1 ml-12 border-b-2  text-xl border-gray-300 rounded-md focus:outline-none focus:border-red-500 text-center">
+            <button type="button" class="m-2 font-['revans'] text-2xl" >GO</button>
           </div>
         </form>
       </div>
