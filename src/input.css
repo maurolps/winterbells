@@ -7,3 +7,8 @@
     font-family: Roboto, system-ui, sans-serif;
   }
 }
+
+.tooltip:hover .tooltip-info {
+  display: block;
+  @apply transition duration-200 ease-in-out delay-150;
+}

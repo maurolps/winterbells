@@ -13,8 +13,8 @@
     <div class="bg-red-500 w-1/2 h-full p-1"></div>
   </section>
   <main class="flex flex-col flex-grow">
-    <div class="flex flex-grow flex-col gap-6 justify-center items-center">
-      <div class="container flex flex-col text-center">
+    <div class="flex flex-grow flex-col gap-20 justify-center items-center">
+      <div class="container flex flex-col text-center mb-10">
         <div class="">
           <p class="font-['revans'] text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-5">CHRISTMAS IS COMIN'</p>
         </div>
@@ -24,13 +24,17 @@
         </div>
       </div>
       <div class="container text-center my-5 font-semibold">
-        <p class="text-xl">CHECK IN</p>
-        <div class="tooltip relative">
-          <span class="text-sm">?</span>
-          <div class="tooltip-info text-xs text-start w-48 z-10 bg-rose-300 hidden p-4 shadow-md absolute top-full left-1/2">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-            <p>Consectetur quidem modi odio commodi illum tempora laboriosam eos a expedita cumque.</p>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+        <div class="checkin flex justify-center">
+          <p class="text-xl">CHECK IN</p>
+          <div class="relative flex justify-center">
+            <div class="tooltip p-2">
+              <img src="../assets/info.svg" alt="infobox" class="w-4 relative ">
+              <div class="tooltip-info text-[12px] text-start text-slate-50 opc w-48 z-10 bg-slate-600 p-4 shadow-md rounded-lg absolute bottom-full -left-1/2 mr-14 hidden">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>Consectetur quidem modi odio commodi illum tempora.</p>
+                <svg class="absolute text-slate-600 h-4 w-10 left-3 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+              </div>
+            </div>
           </div>
         </div>
         <form>
