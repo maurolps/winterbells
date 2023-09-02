@@ -1,12 +1,50 @@
-<!DOCTYPE html>
+<!DOCTYpE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.cdnfonts.com/css/revans" rel="stylesheet">
   <title>Winterbells</title>
 </head>
-<body>
-  <h1 class="text-3xl font-bold underline text-center">Winterbells!</h1>
+<body class = "min-h-screen flex flex-col">
+  <section id="home" class="w-full">
+    <div class="bg-red-500 w-1/2 h-full p-1"></div>
+  </section>
+  <main class="flex flex-col flex-grow">
+    <div class="flex flex-grow flex-col gap-6 justify-center items-center">
+      <div class="container flex flex-col text-center">
+        <div class="">
+          <p class="font-['revans'] text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-5">CHRISTMAS IS COMIN'</p>
+        </div>
+        <div class="">
+          <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">THE BELLS WILL RING IN</p>
+          <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">10 DAYS</p>
+        </div>
+      </div>
+      <div class="container text-center my-5 font-semibold">
+        <p class="text-xl">• CHECK IN •</p>
+        <form>
+          <div class="my-2 text-xs text-center">
+            <input type="text" id="checkin" name="checkin" placeholder="Name"
+            class="p-1 ml-12 border-b-2 font-['revans'] text-xl border-gray-300 rounded-md focus:outline-none focus:border-red-500 text-center">
+            <button type="button" class="m-2 font-['revans'] text-2xl" disabled>GO</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div class="flex flex-col justify-center items-center md:flex-row gap-5  md:justify-between text-xs m-10">
+    <div>
+      <p class="text-center md:text-left">45 XMAS HAVE BEEN GONE SINCE 01/12/1996</p>
+      <p class="text-center md:text-left">THAT IS 12 YEARS, 84 MONTHS, 666 DAYS</p>
+    </div>
+    <div>
+      <p class="text-center md:text-left">BIRA HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
+      <p class="text-center md:text-left">GIBRALTAR HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
+    </div>
+  </div>
+  
 </body>
 </html>
