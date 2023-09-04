@@ -1,0 +1,69 @@
+<!DOCTYpE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.cdnfonts.com/css/revans" rel="stylesheet">
+  <script src="script.js" defer></script>
+  <title>Winterbells</title>
+</head>
+<body class = "min-h-screen flex flex-col">
+  <section id="home" class="w-full">
+    <div class="bg-red-500 w-1/2 h-full p-1"></div>
+  </section>
+  <main class="flex flex-col flex-grow">
+    <div class="flex flex-grow flex-col gap-20 justify-center items-center">
+      <div class="container flex flex-col text-center mb-10">
+        <div class="">
+          <p class="font-['revans'] text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-5">CHRISTMAS IS COMIN'</p>
+        </div>
+        <div class="">
+          <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">THE BELLS WILL RING IN</p>
+          <p id="days-left" class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">10 DAYS</p>
+        </div>
+      </div>
+      <div class="container text-center my-5 font-semibold">
+        <div class="checkin flex justify-center">
+          <p class="text-xl">CHECK IN</p>
+          <div class="relative flex justify-center">
+            <div class="tooltip p-2">
+              <img src="../assets/info.svg" alt="infobox" class="w-4 relative">
+              <div class="tooltip-info text-[12px] text-start  w-48 z-10  p-4 shadow-md rounded-lg absolute bottom-full -left-1/2 mr-14 hidden">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                <p>Consectetur quidem modi odio commodi illum tempora.</p>
+                <svg class="absolute text-slate-600 h-4 w-10 left-3 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form>
+          <div class="my-2 text-xs text-center">
+            <input type="text" id="checkin" name="checkin" placeholder="Name"
+            class="p-1 ml-12 border-b-2  text-xl border-gray-300 rounded-md focus:outline-none focus:border-red-500 text-center">
+            <button type="button" class="m-2 font-['revans'] text-2xl" >GO</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <div class="flex flex-col justify-center items-center md:flex-row gap-5  md:justify-between text-xs m-10">
+    <div>
+      <p class="text-center md:text-left">45 XMAS HAVE BEEN GONE SINCE 01/12/1996</p>
+      <p class="text-center md:text-left">THAT IS 12 YEARS, 84 MONTHS, 666 DAYS</p>
+    </div>
+    <div class="p-2 max-h-10 overflow-hidden [mask-image:_linear-gradient(to_bottom,transparent_0,_black_28px,_black_calc(100%-50px),transparent_100%)]">
+      <div class="user-list ">
+        <p class="text-center md:text-left">BIRA HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
+        <p class="text-center md:text-left">GIBRALTAR HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
+      </div>
+      <div class="user-list">
+        <p class="text-center md:text-left">BIRA HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
+        <p class="text-center md:text-left">GIBRALTAR HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
