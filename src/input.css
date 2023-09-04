@@ -12,3 +12,12 @@
   display: block;
   @apply transition duration-200 ease-in-out delay-150;
 }
+
+.user-list {
+  animation: infinite-scroll 10s linear infinite;
+}
+
+@keyframes infinite-scroll {
+  from { transform: translateY(0)}
+  to { transform: translateY(-100%)}
+}
