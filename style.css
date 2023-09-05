@@ -650,10 +650,6 @@ html {
   height: 100%;
 }
 
-.max-h-10 {
-  max-height: 2.5rem;
-}
-
 .min-h-screen {
   min-height: 100vh;
 }
@@ -700,10 +696,6 @@ html {
 
 .gap-5 {
   gap: 1.25rem;
-}
-
-.overflow-hidden {
-  overflow: hidden;
 }
 
 .rounded-lg {
@@ -795,11 +787,6 @@ html {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.\[mask-image\:_linear-gradient\(to_bottom\2c transparent_0\2c _black_28px\2c _black_calc\(100\%-50px\)\2c transparent_100\%\)\] {
-  -webkit-mask-image: linear-gradient(to bottom,transparent 0, black 28px, black calc(100% - 50px),transparent 100%);
-          mask-image: linear-gradient(to bottom,transparent 0, black 28px, black calc(100% - 50px),transparent 100%);
-}
-
 .tooltip:hover .tooltip-info {
   display: block;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
@@ -814,9 +801,21 @@ html {
   animation: infinite-scroll 10s linear infinite;
 }
 
+.user-list-db {
+  animation: infinite-scroll 10s linear infinite;
+}
+
+.user-list-container {
+  max-height: 2.5rem;
+  overflow: hidden;
+  padding: 0.5rem;
+  -webkit-mask-image: linear-gradient(to bottom,transparent 0, black 28px, black calc(100% - 50px),transparent 100%);
+          mask-image: linear-gradient(to bottom,transparent 0, black 28px, black calc(100% - 50px),transparent 100%);
+}
+
 @keyframes infinite-scroll {
   from {
-    transform: translateY(0)
+    transform: translateY(100%)
   }
 
   to {

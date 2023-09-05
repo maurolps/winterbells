@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.cdnfonts.com/css/revans" rel="stylesheet">
-  <script src="script.js" defer></script>
+  <script type="module" src="script.js" defer></script>
   <title>Winterbells</title>
 </head>
-<body class = "min-h-screen flex flex-col">
+<body class = "min-h-screen flex flex-col"> 
   <section id="home" class="w-full">
     <div class="bg-red-500 w-1/2 h-full p-1"></div>
   </section>
@@ -39,9 +39,9 @@
         </div>
         <form>
           <div class="my-2 text-xs text-center">
-            <input type="text" id="checkin" name="checkin" placeholder="Name"
+            <input type="text" minlength="3" maxlength="20" id="checkin" name="checkin" required placeholder="Name"
             class="p-1 ml-12 border-b-2  text-xl border-gray-300 rounded-md focus:outline-none focus:border-red-500 text-center">
-            <button type="button" class="m-2 font-['revans'] text-2xl" >GO</button>
+            <button type="submit" class="m-2 font-['revans'] text-2xl" >GO</button>
           </div>
         </form>
       </div>
@@ -53,17 +53,12 @@
       <p class="text-center md:text-left">45 XMAS HAVE BEEN GONE SINCE 01/12/1996</p>
       <p class="text-center md:text-left">THAT IS 12 YEARS, 84 MONTHS, 666 DAYS</p>
     </div>
-    <div class="p-2 max-h-10 overflow-hidden [mask-image:_linear-gradient(to_bottom,transparent_0,_black_28px,_black_calc(100%-50px),transparent_100%)]">
+    <div class="user-list-container">
       <div class="user-list ">
-        <p class="text-center md:text-left">BIRA HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
-        <p class="text-center md:text-left">GIBRALTAR HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
-      </div>
-      <div class="user-list">
         <p class="text-center md:text-left">BIRA HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
         <p class="text-center md:text-left">GIBRALTAR HAVE SEEN THE LIGHTS IN - '03 • '06 • '11</p>
       </div>
     </div>
   </div>
-  
 </body>
 </html>
