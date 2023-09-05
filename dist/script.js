@@ -1,11 +1,12 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getFirestore, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js';
+import { getFirestore, collection, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js';
 
 const firebaseConfig = {
- //...
+//...
 }; 
+
 const app = initializeApp(firebaseConfig); 
-const db = getFirestore();
+const db = getFirestore(app);
 
 const UpdateDisplay = (() => {
 
@@ -34,25 +35,81 @@ const UpdateDisplay = (() => {
    daysLeft.textContent = `${daysCounter} DAYS`;
  }
 
- return {updateDayLeft}
+ const updateUserList = (userData) => {
+  const userList = document.querySelector('.user-list-container');
+  const defaultList = document.querySelectorAll('.user-list');
+  const userListDB = document.querySelector('.user-list-db');
+  const newUserData = document.createElement('p');
+
+  newUserData.className = "text-center md:text-left";
+  newUserData.textContent = userData.toUpperCase();
+  
+  defaultList.forEach((defaultlist) => {
+    defaultlist.remove();
+  });
+
+  if (!userListDB) {
+    const newUserList = document.createElement('div');
+    newUserList.className = "user-list-db";
+    newUserList.appendChild(newUserData);
+    userList.appendChild(newUserList);
+  } else {
+    userListDB.appendChild(newUserData);
+  }
+  
+  
+
+ } 
+
+ return {updateDayLeft, updateUserList}
 
 })()
-//day = user.data().Date.toDate().getDate() -- 5
-//month = user.data().Date.toDate().getMonth() -- 8 (+1 = 9)
-//year = user.data().Date.toDate().getFullYear() -- 2023
-//GIBRALTAR HAVE SEEN THE LIGHTS IN - '03 • '06 • '11
+
 async function readDB() {
   try {
-    const userList = collection(db, 'userlist');
+    const userList = collection(db, 'userlist'); 
     const data = await getDocs(userList);
     data.forEach((user) => {
-      console.log(user.data().Name, '=>', user.data().Date.toDate().getFullYear());    
-      
+      let userData = "";
+      let day = user.data().Date.toDate().getDate();
+      let month = user.data().Date.toDate().getMonth() + 1;
+      const year = user.data().Date.toDate().getFullYear();
+
+      day = String(day).padStart(2, '0');
+      month = String(month).padStart(2, '0');
+      userData = `${user.data().Name} HAVE SEEN THE LIGHTS IN - '${day} • '${month} • '${year}`;
+      UpdateDisplay.updateUserList(userData);
     });
   } catch (error) {
-    console.error('Error: ', error); 
+    console.error('Error: ', error);
   }
 }
+
+function writeDB () {
+
+   const userName = document.getElementById('checkin').value; 
+   const userList = collection(db, 'userlist');
+   const myDate = new Date();
+
+   addDoc(userList, {
+    Name: userName,
+    Date: myDate,
+   })
+    .catch((error) => {
+      console.error('Error: ', error);
+    })
+ 
+
+}
+
+const formListener = (() => {
+  const form = document.querySelector('form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    writeDB();
+    form.reset();
+  })
+})();
 
 UpdateDisplay.updateDayLeft();
 readDB();
