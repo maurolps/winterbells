@@ -2,25 +2,27 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 import { getFirestore, collection, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB9J0KiusDedW1hvjOaoV1omU8KWAgk3GA",
-  authDomain: "winterbells-61a2d.firebaseapp.com",
-  projectId: "winterbells-61a2d",
-  storageBucket: "winterbells-61a2d.appspot.com",
-  messagingSenderId: "281279665186",
-  appId: "1:281279665186:web:e1755ba5c121bc4100a67b"
-}; 
+apiKey: "AIzaSyD6VlTT23jbJjfnf65kjypcdtHlt8oNRI8",
+authDomain: "winterbelss-e58ef.firebaseapp.com",
+projectId: "winterbelss-e58ef",
+storageBucket: "winterbelss-e58ef.appspot.com",
+messagingSenderId: "387239747463",
+appId: "1:387239747463:web:1904f16d989b0a82fc3d22",
+measurementId: "G-3FD72ZST5R"
+};
 
 const app = initializeApp(firebaseConfig); 
 const db = getFirestore(app);
 
 const UpdateDisplay = (() => {
+  const myDate = new Date();
+  const day = myDate.getDate();
+  const month = myDate.getMonth() + 1;
+  const year = myDate.getFullYear();
 
  const updateDayLeft = () => {
    const daysLeft = document.getElementById('days-left');
-   const myDate = new Date();
-   const day = myDate.getDate();
-   const month = myDate.getMonth() + 1;
-   const year = myDate.getFullYear();
+
    let daysCounter = day;
    for (let i = month; i < 13; i++) {
      let daysInMonth = new Date(year, i, 0).getDate();
@@ -31,8 +33,8 @@ const UpdateDisplay = (() => {
          daysInMonth = 25 
        }
        daysCounter += daysInMonth;
-       if (i >= 15) {
-         console.log ("ERROR. Months counter overloaded.");  
+       if (i >= 14) {
+         console.error ("Months counter overloaded.");  
          return null;
        }
      }
@@ -62,11 +64,32 @@ const UpdateDisplay = (() => {
     userListDB.appendChild(newUserData);
   }
   
-  
+}
+  const updateXmasCounter = () => {
+    const xmasCounterDate = document.getElementById("xmas-counter");
+    const xmasCounterYears = document.getElementById("xmas-counter2");
+
+    const appDay = 24, 
+    appMonth = 12, 
+    appYear = 2000;
+
+    let xmasCounter = year - appYear;
+    let appDate = `${appDay}/${appMonth}/${appYear}`;
+    let appYears =  0;
+    let appMonths = month;
+    let appDays = appMonths * 30;
+    if (xmasCounter > 1) { 
+      appYears =  xmasCounter - 1;
+      appMonths = appYears * 12;
+      appDays = (appDays * 30) + 7;
+    }
+
+    xmasCounterDate.textContent = `${xmasCounter} XMAS HAVE BEEN GONE SINCE ${appDate}`;
+    xmasCounterYears.textContent = `THAT IS ${appYears} YEARS, ${appMonths} MONTHS, ${appDays} DAYS`  
 
  } 
 
- return {updateDayLeft, updateUserList}
+ return {updateDayLeft, updateUserList, updateXmasCounter}
 
 })()
 
@@ -152,6 +175,7 @@ function writeDB () {
    })
     .then(() => {
       messageBox(`${userName} have seen the lights`, "success");
+      readDB();
     })
     .catch((error) => {
       messageBox("Cannot update server. Check console for details", "error");
@@ -171,4 +195,5 @@ const formListener = (() => {
 })();
 
 UpdateDisplay.updateDayLeft();
+UpdateDisplay.updateXmasCounter();
 readDB();
