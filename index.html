@@ -6,7 +6,11 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.cdnfonts.com/css/revans" rel="stylesheet">
   <script type="module" src="script.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
   <title>Winterbells</title>
+  <style>
+
+  </style>
 </head>
 <body class = "min-h-screen flex flex-col"> 
   <section id="home" class="w-full">
@@ -30,8 +34,8 @@
             <div class="tooltip p-2">
               <img src="./assets/info.svg" alt="infobox" class="w-4 relative">
               <div class="tooltip-info text-[12px] text-start  w-48 z-10  p-4 shadow-md rounded-lg absolute bottom-full -left-1/2 mr-14 hidden">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                <p>Consectetur quidem modi odio commodi illum tempora.</p>
+                <p>Server will only accept new users on Christmas.</p>
+                <p>Don't forget to come back and see the lights.</p>
                 <svg class="absolute text-slate-600 h-4 w-10 left-3 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
               </div>
             </div>
@@ -47,11 +51,25 @@
       </div>
     </div>
   </main>
-
+      <!-- MessageBox -->
+      <div class="messageBox">
+  
+        <div class="messageBox-content">
+          <i class="fas fa-solid fa-check check"></i>
+      
+          <div class="message">
+            <span class="text text-1">Success</span>
+            <span class="text text-2">Your changes has been saved</span>
+          </div>
+        </div>
+        <i class="fa-solid fa-xmark close"></i>
+        <div class="progress"></div>
+      </div>
+      <!-- MessageBox end -->
   <div class="flex flex-col justify-center items-center md:flex-row gap-5  md:justify-between text-xs m-10">
     <div>
-      <p class="text-center md:text-left">45 XMAS HAVE BEEN GONE SINCE 01/12/1996</p>
-      <p class="text-center md:text-left">THAT IS 12 YEARS, 84 MONTHS, 666 DAYS</p>
+      <p id="xmas-counter" class="text-center md:text-left">45 XMAS HAVE BEEN GONE SINCE 01/12/1996</p>
+      <p id="xmas-counter2" class="text-center md:text-left">THAT IS 12 YEARS, 84 MONTHS, 666 DAYS</p>
     </div>
     <div class="user-list-container">
       <div class="user-list ">

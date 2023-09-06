@@ -2,20 +2,27 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 import { getFirestore, collection, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js';
 
 const firebaseConfig = {
-//...
-}; 
+apiKey: "AIzaSyD6VlTT23jbJjfnf65kjypcdtHlt8oNRI8",
+authDomain: "winterbelss-e58ef.firebaseapp.com",
+projectId: "winterbelss-e58ef",
+storageBucket: "winterbelss-e58ef.appspot.com",
+messagingSenderId: "387239747463",
+appId: "1:387239747463:web:1904f16d989b0a82fc3d22",
+measurementId: "G-3FD72ZST5R"
+};
 
 const app = initializeApp(firebaseConfig); 
 const db = getFirestore(app);
 
 const UpdateDisplay = (() => {
+  const myDate = new Date();
+  const day = myDate.getDate();
+  const month = myDate.getMonth() + 1;
+  const year = myDate.getFullYear();
 
  const updateDayLeft = () => {
    const daysLeft = document.getElementById('days-left');
-   const myDate = new Date();
-   const day = myDate.getDate();
-   const month = myDate.getMonth() + 1;
-   const year = myDate.getFullYear();
+
    let daysCounter = day;
    for (let i = month; i < 13; i++) {
      let daysInMonth = new Date(year, i, 0).getDate();
@@ -26,8 +33,8 @@ const UpdateDisplay = (() => {
          daysInMonth = 25 
        }
        daysCounter += daysInMonth;
-       if (i >= 15) {
-         console.log ("ERROR. Months counter overloaded.");  
+       if (i >= 14) {
+         console.error ("Months counter overloaded.");  
          return null;
        }
      }
@@ -57,13 +64,84 @@ const UpdateDisplay = (() => {
     userListDB.appendChild(newUserData);
   }
   
-  
+}
+  const updateXmasCounter = () => {
+    const xmasCounterDate = document.getElementById("xmas-counter");
+    const xmasCounterYears = document.getElementById("xmas-counter2");
+
+    const appDay = 24, 
+    appMonth = 12, 
+    appYear = 2000;
+
+    let xmasCounter = year - appYear;
+    let appDate = `${appDay}/${appMonth}/${appYear}`;
+    let appYears =  0;
+    let appMonths = month;
+    let appDays = appMonths * 30;
+    if (xmasCounter > 1) { 
+      appYears =  xmasCounter - 1;
+      appMonths = appYears * 12;
+      appDays = (appDays * 30) + 7;
+    }
+
+    xmasCounterDate.textContent = `${xmasCounter} XMAS HAVE BEEN GONE SINCE ${appDate}`;
+    xmasCounterYears.textContent = `THAT IS ${appYears} YEARS, ${appMonths} MONTHS, ${appDays} DAYS`  
 
  } 
 
- return {updateDayLeft, updateUserList}
+ return {updateDayLeft, updateUserList, updateXmasCounter}
 
 })()
+
+function messageBox (message, type) { 
+  const messageBox = document.querySelector(".messageBox"),
+  closeIcon = document.querySelector(".close"),
+  messageText = document.querySelector(".text-2"),
+  messageTitle = document.querySelector(".text-1"),
+  progress = document.querySelector(".progress"),
+  check = document.querySelector(".messageBox-content .check");
+  let timer1, timer2;
+
+  switch (type) {
+    case "error": {
+      messageTitle.textContent = "Error"; 
+      progress.classList.add("error");
+      check.classList.add("error");
+      break;
+    }
+    case "success": {
+      messageTitle.textContent = "Success"; 
+      progress.classList.remove("error");
+      check.classList.remove("error");
+      break;
+    }
+  }
+
+  messageText.textContent = message;
+  messageBox.classList.add("active");
+  progress.classList.add("active");
+
+  timer1 = setTimeout(() => {
+    messageBox.classList.remove("active");
+  }, 5000);
+
+  timer2 = setTimeout(() => {
+    progress.classList.remove("active");
+  }, 5300);
+
+
+closeIcon.addEventListener("click", () => {
+  messageBox.classList.remove("active");
+
+  setTimeout(() => {
+    progress.classList.remove("active");
+  }, 300);
+
+  clearTimeout(timer1);
+  clearTimeout(timer2);
+});
+
+}
 
 async function readDB() {
   try {
@@ -95,7 +173,12 @@ function writeDB () {
     Name: userName,
     Date: myDate,
    })
+    .then(() => {
+      messageBox(`${userName} have seen the lights`, "success");
+      readDB();
+    })
     .catch((error) => {
+      messageBox("Cannot update server. Check console for details", "error");
       console.error('Error: ', error);
     })
  
@@ -112,4 +195,5 @@ const formListener = (() => {
 })();
 
 UpdateDisplay.updateDayLeft();
+UpdateDisplay.updateXmasCounter();
 readDB();
