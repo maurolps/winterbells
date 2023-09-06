@@ -831,6 +831,7 @@ body{
   position: absolute;
   top: 25px;
   right: 30px;
+  min-width: 250px;
   border-radius: 12px;
   background: #fff;
   padding: 20px 35px 20px 25px;
@@ -853,12 +854,16 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 35px;
-  min-width: 35px;
+  height: 25px;
+  min-width: 25px;
   background-color: #40f4a9;
   color: #fff;
-  font-size: 20px;
+  font-size: 16px;
   border-radius: 50%;
+}
+
+.messageBox-content .check.error {
+  background-color: red;
 }
 
 .messageBox-content .message {
@@ -909,8 +914,12 @@ body{
   background-color: #40f4a9;
 }
 
+.messageBox .progress.error:before {
+  background-color: red;
+}
+
 .progress.active:before {
-  animation: progress 3s linear forwards;
+  animation: progress 5s linear forwards;
 }
 
 @keyframes progress {
