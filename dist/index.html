@@ -20,7 +20,7 @@
     <div class="flex flex-grow flex-col gap-20 justify-center items-center">
       <div class="container flex flex-col text-center mb-10">
         <div class="">
-          <p class="font-['revans'] text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-5">CHRISTMAS IS COMIN'</p>
+          <p class="font-['revans'] text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-5 mb-1">CHRISTMAS IS COMIN'</p>
         </div>
         <div class="">
           <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">THE BELLS WILL RING IN</p>
@@ -31,12 +31,14 @@
         <div class="checkin flex justify-center">
           <p class="text-xl">CHECK IN</p>
           <div class="relative flex justify-center">
-            <div class="tooltip p-2">
-              <img src="./assets/info.svg" alt="infobox" class="w-4 relative">
-              <div class="tooltip-info text-[12px] text-start  w-48 z-10  p-4 shadow-md rounded-lg absolute bottom-full -left-1/2 mr-14 hidden">
-                <p>Server will only accept new users on Christmas.</p>
-                <p>Don't forget to come back and see the lights.</p>
-                <svg class="absolute text-slate-600 h-4 w-10 left-3 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve"><polygon class="fill-current" points="0,0 127.5,127.5 255,0"/></svg>
+            <div class="tooltip p-2 ">
+              <img src="./assets/info.svg" alt="infobox" class="w-6 relative -top-3">
+              <div class="tooltip-info text-[10px] font-normal text-start  w-44 z-10  p-2 pl-3 border-dotted border-2 rounded-lg absolute bottom-[130%] -left-[35%] mr-14 hidden">
+                <p>THE LIGHTS ARE DIM.</p>
+                <p>COME BACK ON DECEMBER 24TH</p>
+                <svg class="absolute text-slate-600 h-4 w-10 left-3 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve">
+                <polygon fill="none" stroke="currentColor" stroke-width="2" points="0,0 127.5,127.5 255,0"/>
+                </svg>
               </div>
             </div>
           </div>
@@ -44,7 +46,7 @@
         <form>
           <div class="my-2 text-xs text-center">
             <input type="text" minlength="3" maxlength="20" id="checkin" name="checkin" required placeholder="Name"
-            class="p-1 ml-12 border-b-2  text-xl border-gray-300 rounded-md focus:outline-none focus:border-red-500 text-center">
+            class="p-1 ml-5 border-b-2  text-xl border-gray-300 rounded-md focus:outline-none focus:border-red-500 text-center">
             <button type="submit" class="m-2 font-['revans'] text-2xl" >GO</button>
           </div>
         </form>
