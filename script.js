@@ -2,7 +2,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 import { getFirestore, collection, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js';
 
 const firebaseConfig = {
-// ...
+  apiKey: "AIzaSyB9J0KiusDedW1hvjOaoV1omU8KWAgk3GA",
+  authDomain: "winterbells-61a2d.firebaseapp.com",
+  projectId: "winterbells-61a2d",
+  storageBucket: "winterbells-61a2d.appspot.com",
+  messagingSenderId: "281279665186",
+  appId: "1:281279665186:web:e1755ba5c121bc4100a67b"
 }; 
 
 const app = initializeApp(firebaseConfig); 
@@ -65,24 +70,41 @@ const UpdateDisplay = (() => {
 
 })()
 
-function messageBox (message) { 
+function messageBox (message, type) { 
   const messageBox = document.querySelector(".messageBox"),
   closeIcon = document.querySelector(".close"),
   messageText = document.querySelector(".text-2"),
-  progress = document.querySelector(".progress");
+  messageTitle = document.querySelector(".text-1"),
+  progress = document.querySelector(".progress"),
+  check = document.querySelector(".messageBox-content .check");
   let timer1, timer2;
 
-  messageText.textContent = message.toUpperCase();
+  switch (type) {
+    case "error": {
+      messageTitle.textContent = "Error"; 
+      progress.classList.add("error");
+      check.classList.add("error");
+      break;
+    }
+    case "success": {
+      messageTitle.textContent = "Success"; 
+      progress.classList.remove("error");
+      check.classList.remove("error");
+      break;
+    }
+  }
+
+  messageText.textContent = message;
   messageBox.classList.add("active");
   progress.classList.add("active");
 
   timer1 = setTimeout(() => {
     messageBox.classList.remove("active");
-  }, 3000);
+  }, 5000);
 
   timer2 = setTimeout(() => {
     progress.classList.remove("active");
-  }, 3300);
+  }, 5300);
 
 
 closeIcon.addEventListener("click", () => {
@@ -129,9 +151,10 @@ function writeDB () {
     Date: myDate,
    })
     .then(() => {
-      messageBox(`${userName} HAVE SEEN THE LIGHTS`);
+      messageBox(`${userName} have seen the lights`, "success");
     })
     .catch((error) => {
+      messageBox("Cannot update server. Check console for details", "error");
       console.error('Error: ', error);
     })
  
