@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 import { getFirestore, collection, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js';
 
 const firebaseConfig = {
-//...
+// ...
 }; 
 
 const app = initializeApp(firebaseConfig); 
@@ -65,6 +65,39 @@ const UpdateDisplay = (() => {
 
 })()
 
+function messageBox (message) { 
+  const messageBox = document.querySelector(".messageBox"),
+  closeIcon = document.querySelector(".close"),
+  messageText = document.querySelector(".text-2"),
+  progress = document.querySelector(".progress");
+  let timer1, timer2;
+
+  messageText.textContent = message.toUpperCase();
+  messageBox.classList.add("active");
+  progress.classList.add("active");
+
+  timer1 = setTimeout(() => {
+    messageBox.classList.remove("active");
+  }, 3000);
+
+  timer2 = setTimeout(() => {
+    progress.classList.remove("active");
+  }, 3300);
+
+
+closeIcon.addEventListener("click", () => {
+  messageBox.classList.remove("active");
+
+  setTimeout(() => {
+    progress.classList.remove("active");
+  }, 300);
+
+  clearTimeout(timer1);
+  clearTimeout(timer2);
+});
+
+}
+
 async function readDB() {
   try {
     const userList = collection(db, 'userlist'); 
@@ -95,6 +128,9 @@ function writeDB () {
     Name: userName,
     Date: myDate,
    })
+    .then(() => {
+      messageBox(`${userName} HAVE SEEN THE LIGHTS`);
+    })
     .catch((error) => {
       console.error('Error: ', error);
     })
