@@ -158,6 +158,7 @@ async function readDB() {
       userData = `${user.data().Name} HAVE SEEN THE LIGHTS IN - '${day} • '${month} • '${year}`;
       UpdateDisplay.updateUserList(userData);
     });
+
   } catch (error) {
     console.error('Error: ', error);
   }

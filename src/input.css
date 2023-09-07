@@ -14,7 +14,7 @@ body{
 
 .tooltip:hover .tooltip-info {
   display: block;
-  @apply transition duration-200 ease-in-out delay-150;
+  @apply transition-all duration-200 ease-in-out delay-150;
 }
 
 .user-list {
@@ -26,7 +26,7 @@ body{
 }
 
 .user-list-container {
-  @apply p-2 max-h-10 overflow-hidden [mask-image:_linear-gradient(to_bottom,transparent_0,_black_28px,_black_calc(100%-50px),transparent_100%)]
+  @apply p-2 max-h-40 overflow-hidden [mask-image:_linear-gradient(to_bottom,transparent_0,_black_28px,_black_calc(100%-50px),transparent_100%)]
 }
 
 @keyframes infinite-scroll {
