@@ -796,6 +796,11 @@ html {
   font-weight: 600;
 }
 
+.text-gray-400 {
+  --tw-text-opacity: 1;
+  color: rgb(156 163 175 / var(--tw-text-opacity));
+}
+
 .text-slate-600 {
   --tw-text-opacity: 1;
   color: rgb(71 85 105 / var(--tw-text-opacity));
@@ -807,19 +812,7 @@ body{
 
 .tooltip:hover .tooltip-info {
   display: block;
-}
-
-@keyframes pulse {
-  50% {
-    opacity: .5;
-  }
-}
-
-.tooltip:hover .tooltip-info {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-property: all;
   transition-delay: 150ms;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -834,7 +827,7 @@ body{
 }
 
 .user-list-container {
-  max-height: 2.5rem;
+  max-height: 10rem;
   overflow: hidden;
   padding: 0.5rem;
   -webkit-mask-image: linear-gradient(to bottom,transparent 0, black 28px, black calc(100% - 50px),transparent 100%);
@@ -954,6 +947,11 @@ body{
 
 .messageBox.active ~ button {
   pointer-events: none;
+}
+
+.hover\:text-red-500:hover {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .focus\:border-red-500:focus {
