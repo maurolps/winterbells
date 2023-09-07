@@ -5,20 +5,24 @@ This project was requested from a friend for Christmas celebration. It allows us
 
 Demo: https://maurolps.github.io/winterbells/
 
-💡 Skills Utilized:
+<h2>💡 Skills Utilized:</h2>
 
-Firebase Integration
-Date Manipulation
-DOM Manipulation
-Error Handling
-Asynchronous Programming
-Factory Functions and Modular Functions
-Form Handling
+<ul>
+  <li>Firebase Integration</li>
+  <li>Date Manipulation</li>
+  <li>DOM Manipulation</li>
+  <li>Error Handling</li>
+  <li>Asynchronous Programming</li>
+  <li>Factory Functions and Modular Functions</li>
+  <li>Form Handling</li>
+</ul>
 
-🛠️ Technologies Used:
+<h2>🛠️ Technologies Used:</h2>
 
-Firebase
-JavaScript
-HTML
-CSS
-Tailwind
+<ul>
+  <li>Firebase</li>
+  <li>JavaScript</li>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>Tailwind</li>
+</ul>
