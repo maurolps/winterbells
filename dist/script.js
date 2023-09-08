@@ -179,7 +179,7 @@ function writeDB () {
       readDB();
     })
     .catch((error) => {
-      messageBox("Cannot update server. Check console for details", "error");
+      messageBox("Cannot update server. Come back on December 24th", "error");
       console.error('Error: ', error);
     })
  
