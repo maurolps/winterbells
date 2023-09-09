@@ -14,25 +14,25 @@ body{
 
 .tooltip:hover .tooltip-info {
   display: block;
-  @apply transition-all duration-200 ease-in-out delay-150;
+  @apply transition-all duration-1000 ease-in-out delay-500;
 }
 
 .user-list {
-  animation: infinite-scroll 10s linear infinite;
+  animation: infinite-scroll 20s linear infinite;
 }
 
 .user-list-db {
-  animation: infinite-scroll 10s linear infinite;
+  animation: infinite-scroll 20s linear infinite;
 }
 
-.user-list-container {
-  @apply p-2 max-h-40 overflow-hidden [mask-image:_linear-gradient(to_bottom,transparent_0,_black_28px,_black_calc(100%-50px),transparent_100%)]
-}
+  /* .user-list-container {
+    @apply p-2 max-h-40 overflow-hidden [mask-image:_linear-gradient(to_bottom,transparent_0,_black_28px,_black_calc(100%-50px),transparent_100%)]
+  } */
 
-@keyframes infinite-scroll {
+/* @keyframes infinite-scroll {
   from { transform: translateY(100%)}
   to { transform: translateY(-100%)}
-}
+}  */
 
 .messageBox {
   position: absolute;
@@ -139,3 +139,11 @@ body{
 .messageBox.active ~ button {
   pointer-events: none;
 } 
+
+/* ||| BORNS' CUSTOM SHIT ||| */
+
+/* capitalize first letter only */
+.capitalize-first::first-letter {
+  text-transform: uppercase;
+}
+
