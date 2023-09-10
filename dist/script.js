@@ -196,5 +196,5 @@ const formListener = (() => {
 })();
 
 UpdateDisplay.updateDayLeft();
-UpdateDisplay.updateXmasCounter();
-readDB();
+// UpdateDisplay.updateXmasCounter();
+// readDB();
