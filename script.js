@@ -21,9 +21,12 @@ const UpdateDisplay = (() => {
   const year = myDate.getFullYear();
 
  const updateDayLeft = () => {
-   const daysLeft = document.getElementById('days-left');
+  const daysDefault = document.querySelectorAll('.js-daysDefault');
+  const daysContainer = document.getElementById('days-container');
+  const daysDigit = document.createElement('span');
+  daysDigit.className = "js-daysDefault font-['revans'] text-6xl bg-red-700 text-white relative h-20 w-16";
+  let daysCounter = day;
 
-   let daysCounter = day;
    for (let i = month; i < 13; i++) {
      let daysInMonth = new Date(year, i, 0).getDate();
      if (i == month){
@@ -39,17 +42,31 @@ const UpdateDisplay = (() => {
        }
      }
    }
-   daysLeft.textContent = `${daysCounter} DAYS`;
+
+   daysDefault.forEach((defaultDays) => { 
+    defaultDays.remove();  
+  });
+  daysCounter = daysCounter.toString();
+  for (let i = 0; i < daysCounter.length; i++) {
+    if (i > 4) {return}
+    daysDigit.textContent = daysCounter[i];
+    daysContainer.appendChild(daysDigit.cloneNode(true));
+  }
  }
 
- const updateUserList = (userData) => {
+ const updateUserList = (userName, userDate) => {
   const userList = document.querySelector('.user-list-container');
   const defaultList = document.querySelectorAll('.user-list');
   const userListDB = document.querySelector('.user-list-db');
   const newUserData = document.createElement('p');
 
-  newUserData.className = "text-center md:text-left";
-  newUserData.textContent = userData.toUpperCase();
+  const classDot = '<span class="text-sm text-red-500">✦</span>';
+  const className = `<span class="text-base uppercase text-red-700">${userName}</span>`
+  const classText = '<span class="text-gray-600 text-sm italic"> looked at the sky in — </span>'
+  const classDate = `<span class="text-xs"> ${userDate} </span>`;
+
+  newUserData.className = "text-left md:text-right";
+  newUserData.innerHTML = classDot + className + classText + classDate;
   
   defaultList.forEach((defaultlist) => {
     defaultlist.remove();
@@ -66,8 +83,8 @@ const UpdateDisplay = (() => {
   
 }
   const updateXmasCounter = () => {
-    const xmasCounterDate = document.getElementById("xmas-counter");
-    const xmasCounterYears = document.getElementById("xmas-counter2");
+    const xmasCounterDiv = document.getElementById("xmas-counter");
+    const xmasCounterText = document.getElementById("xmas-counterText");
 
     const appDay = 24, 
     appMonth = 12, 
@@ -83,10 +100,8 @@ const UpdateDisplay = (() => {
       appMonths = appYears * 12;
       appDays = (appDays * 30) + 7;
     }
-
-    xmasCounterDate.textContent = `${xmasCounter} XMAS HAVE BEEN GONE SINCE ${appDate}`;
-    xmasCounterYears.textContent = `THAT IS ${appYears} YEARS, ${appMonths} MONTHS, ${appDays} DAYS`  
-
+    xmasCounterDiv.textContent = `${xmasCounter}`;
+    xmasCounterText.textContent = `Christmas, ${appYears} years, ${appMonths} months, ${appDays} days since ${appDate}`  
  } 
 
  return {updateDayLeft, updateUserList, updateXmasCounter}
@@ -148,15 +163,15 @@ async function readDB() {
     const userList = collection(db, 'userlist'); 
     const data = await getDocs(userList);
     data.forEach((user) => {
-      let userData = "";
+      let userName = "";
       let day = user.data().Date.toDate().getDate();
       let month = user.data().Date.toDate().getMonth() + 1;
       const year = user.data().Date.toDate().getFullYear();
 
       day = String(day).padStart(2, '0');
       month = String(month).padStart(2, '0');
-      userData = `${user.data().Name} HAVE SEEN THE LIGHTS IN - '${day} • '${month} • '${year}`;
-      UpdateDisplay.updateUserList(userData);
+      userName = user.data().Name.toUpperCase();
+      UpdateDisplay.updateUserList(userName, `'${day} • '${month} • '${year}`);
     });
 
   } catch (error) {
