@@ -54,14 +54,19 @@ const UpdateDisplay = (() => {
   }
  }
 
- const updateUserList = (userData) => {
+ const updateUserList = (userName, userDate) => {
   const userList = document.querySelector('.user-list-container');
   const defaultList = document.querySelectorAll('.user-list');
   const userListDB = document.querySelector('.user-list-db');
   const newUserData = document.createElement('p');
 
-  newUserData.className = "text-center md:text-left";
-  newUserData.textContent = userData.toUpperCase();
+  const classDot = '<span class="text-sm text-red-500">✦</span>';
+  const className = `<span class="text-base uppercase text-red-700">${userName}</span>`
+  const classText = '<span class="text-gray-600 text-sm italic"> looked at the sky in — </span>'
+  const classDate = `<span class="text-xs"> ${userDate} </span>`;
+
+  newUserData.className = "text-left md:text-right";
+  newUserData.innerHTML = classDot + className + classText + classDate;
   
   defaultList.forEach((defaultlist) => {
     defaultlist.remove();
@@ -95,9 +100,6 @@ const UpdateDisplay = (() => {
       appMonths = appYears * 12;
       appDays = (appDays * 30) + 7;
     }
-
-    // xmasCounter.textContent = `${xmasCounter} XMAS HAVE BEEN GONE SINCE ${appDate}`;
-    // xmasCounterText.textContent = `THAT IS ${appYears} YEARS, ${appMonths} MONTHS, ${appDays} DAYS`  
     xmasCounterDiv.textContent = `${xmasCounter}`;
     xmasCounterText.textContent = `Christmas, ${appYears} years, ${appMonths} months, ${appDays} days since ${appDate}`  
  } 
@@ -161,15 +163,15 @@ async function readDB() {
     const userList = collection(db, 'userlist'); 
     const data = await getDocs(userList);
     data.forEach((user) => {
-      let userData = "";
+      let userName = "";
       let day = user.data().Date.toDate().getDate();
       let month = user.data().Date.toDate().getMonth() + 1;
       const year = user.data().Date.toDate().getFullYear();
 
       day = String(day).padStart(2, '0');
       month = String(month).padStart(2, '0');
-      userData = `${user.data().Name} HAVE SEEN THE LIGHTS IN - '${day} • '${month} • '${year}`;
-      UpdateDisplay.updateUserList(userData);
+      userName = user.data().Name.toUpperCase();
+      UpdateDisplay.updateUserList(userName, `'${day} • '${month} • '${year}`);
     });
 
   } catch (error) {
@@ -210,4 +212,4 @@ const formListener = (() => {
 
 UpdateDisplay.updateDayLeft();
 UpdateDisplay.updateXmasCounter();
-// readDB();
+readDB();
