@@ -21,9 +21,12 @@ const UpdateDisplay = (() => {
   const year = myDate.getFullYear();
 
  const updateDayLeft = () => {
-   const daysLeft = document.getElementById('days-left');
+  const daysDefault = document.querySelectorAll('.js-daysDefault');
+  const daysContainer = document.getElementById('days-container');
+  const daysDigit = document.createElement('span');
+  daysDigit.className = "js-daysDefault font-['revans'] text-6xl bg-red-700 text-white relative h-20 w-16";
+  let daysCounter = day;
 
-   let daysCounter = day;
    for (let i = month; i < 13; i++) {
      let daysInMonth = new Date(year, i, 0).getDate();
      if (i == month){
@@ -39,7 +42,16 @@ const UpdateDisplay = (() => {
        }
      }
    }
-   daysLeft.textContent = `${daysCounter} DAYS`;
+
+   daysDefault.forEach((defaultDays) => { 
+    defaultDays.remove();  
+  });
+  daysCounter = daysCounter.toString();
+  for (let i = 0; i < daysCounter.length; i++) {
+    if (i > 4) {return}
+    daysDigit.textContent = daysCounter[i];
+    daysContainer.appendChild(daysDigit.cloneNode(true));
+  }
  }
 
  const updateUserList = (userData) => {
@@ -66,8 +78,8 @@ const UpdateDisplay = (() => {
   
 }
   const updateXmasCounter = () => {
-    const xmasCounterDate = document.getElementById("xmas-counter");
-    const xmasCounterYears = document.getElementById("xmas-counter2");
+    const xmasCounterDiv = document.getElementById("xmas-counter");
+    const xmasCounterText = document.getElementById("xmas-counterText");
 
     const appDay = 24, 
     appMonth = 12, 
@@ -84,9 +96,10 @@ const UpdateDisplay = (() => {
       appDays = (appDays * 30) + 7;
     }
 
-    xmasCounterDate.textContent = `${xmasCounter} XMAS HAVE BEEN GONE SINCE ${appDate}`;
-    xmasCounterYears.textContent = `THAT IS ${appYears} YEARS, ${appMonths} MONTHS, ${appDays} DAYS`  
-
+    // xmasCounter.textContent = `${xmasCounter} XMAS HAVE BEEN GONE SINCE ${appDate}`;
+    // xmasCounterText.textContent = `THAT IS ${appYears} YEARS, ${appMonths} MONTHS, ${appDays} DAYS`  
+    xmasCounterDiv.textContent = `${xmasCounter}`;
+    xmasCounterText.textContent = `Christmas, ${appYears} years, ${appMonths} months, ${appDays} days since ${appDate}`  
  } 
 
  return {updateDayLeft, updateUserList, updateXmasCounter}
@@ -196,5 +209,5 @@ const formListener = (() => {
 })();
 
 UpdateDisplay.updateDayLeft();
-// UpdateDisplay.updateXmasCounter();
+UpdateDisplay.updateXmasCounter();
 // readDB();

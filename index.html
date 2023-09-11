@@ -32,13 +32,12 @@
           <!-- <p id="days-left" class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">10 DAYS</p> -->
 
           
-          <div id="clock" class="mt-4">
-            <span class="font-['revans'] text-6xl bg-red-700  text-white relative h-20 w-16 inline-block shadow-inner">1</span>
-            <span class="font-['revans'] text-6xl bg-red-700 text-white relative h-20 w-16 inline-block shadow-inner">9</span>
-            <span class="font-['revans'] text-6xl bg-red-700 text-white relative h-20 w-16 inline-block shadow-inner">9</span>
-            <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">DAYS</p>
-
+          <div id="days-container" class="mt-4 flex justify-center gap-1">
+            <span class="js-daysDefault font-['revans'] text-6xl bg-red-700  text-white relative h-20 w-16">1</span>
+            <span class="js-daysDefault font-['revans'] text-6xl bg-red-700 text-white relative h-20 w-16">9</span>
+            <span class="js-daysDefault font-['revans'] text-6xl bg-red-700 text-white relative h-20 w-16">9</span>
           </div>
+          <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">DAYS</p>
 
         </div>
       </div>
@@ -85,7 +84,10 @@
       <!-- MessageBox end -->
   <div class="flex flex-col md:flex-row gap-5  md:justify-between text-xs items-end">
     <div class="m-5 font-['Lora'] text-sm italic text-gray-600 tracking-wide">
-      <span id="xmas-counter" class="md:text-left"><i id="chanBira" class="p-1 text-xs border border-dotted border-black font-bold">45</i> Christmas, 12 years, 84 months, 666 days since 01/12/1996. </span>
+      <i id= "xmas-counter" class="p-1 text-xs border border-dotted border-black font-bold">45</i> 
+      <span id="xmas-counterText" class="md:text-left">
+        Christmas, 12 years, 84 months, 666 days since 01/12/1996. 
+      </span>
     </div>
     <div class="user-list-container font-['Lora'] text-base leading-relaxed">
       <!-- Default User list. -->
