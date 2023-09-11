@@ -101,7 +101,7 @@ const UpdateDisplay = (() => {
       appDays = (appDays * 30) + 7;
     }
     xmasCounterDiv.textContent = `${xmasCounter}`;
-    xmasCounterText.textContent = `Christmas, ${appYears} years, ${appMonths} months, ${appDays} days since ${appDate}`  
+    xmasCounterText.textContent = `${appYears} years, ${appMonths} months, ${appDays} days since ${appDate}`  
  } 
 
  return {updateDayLeft, updateUserList, updateXmasCounter}
