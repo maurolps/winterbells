@@ -612,6 +612,11 @@ html {
   margin: 1.25rem;
 }
 
+.my-3 {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
@@ -659,6 +664,10 @@ html {
 
 .h-4 {
   height: 1rem;
+}
+
+.h-5 {
+  height: 1.25rem;
 }
 
 .h-full {
@@ -759,6 +768,11 @@ html {
 .bg-red-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(185 28 28 / var(--tw-bg-opacity));
+}
+
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
 .p-1 {
@@ -926,109 +940,23 @@ body{
   }
 }
 
-.messageBox {
-  position: absolute;
-  top: 25px;
-  right: 30px;
-  min-width: 250px;
-  border-radius: 12px;
-  background: #fff;
-  padding: 20px 35px 20px 25px;
-  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transform: translateX(calc(100% + 30px));
-  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+.status-message {
+  display: none;
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: 300;
 }
 
-.messageBox.active {
-  transform: translateX(0%);
+.status-message.active {
+  display: block;
 }
 
-.messageBox .messageBox-content {
-  display: flex;
-  align-items: center;
+.status-message.success {
+  color: rgb(46, 173, 46);
 }
 
-.messageBox-content .check {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 25px;
-  min-width: 25px;
-  background-color: #40f4a9;
-  color: #fff;
-  font-size: 16px;
-  border-radius: 50%;
-}
-
-.messageBox-content .check.error {
-  background-color: red;
-}
-
-.messageBox-content .message {
-  display: flex;
-  flex-direction: column;
-  margin: 0 20px;
-}
-
-.message .text {
-  font-size: 12px;
-  font-weight: 400;
-  color: #666666;
-}
-
-.message .text.text-1 {
-  font-weight: 600;
-  color: #333;
-}
-
-.messageBox .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  padding: 5px;
-  cursor: pointer;
-  opacity: 0.7;
-}
-
-.messageBox .close:hover {
-  opacity: 1;
-}
-
-.messageBox .progress {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  width: 100%;
-}
-
-.messageBox .progress:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #40f4a9;
-}
-
-.messageBox .progress.error:before {
-  background-color: red;
-}
-
-.progress.active:before {
-  animation: progress 5s linear forwards;
-}
-
-@keyframes progress {
-  100% {
-    right: 100%;
-  }
-}
-
-.messageBox.active ~ button {
-  pointer-events: none;
+.status-message.error {
+  color: red;
 }
 
 .hover\:text-red-700:hover {
@@ -1096,6 +1024,4 @@ body{
     font-size: 4.5rem;
     line-height: 1;
   }
-} 
-
-
+}

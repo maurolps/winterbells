@@ -108,53 +108,29 @@ const UpdateDisplay = (() => {
 
 })()
 
-function messageBox (message, type) { 
-  const messageBox = document.querySelector(".messageBox"),
-  closeIcon = document.querySelector(".close"),
-  messageText = document.querySelector(".text-2"),
-  messageTitle = document.querySelector(".text-1"),
-  progress = document.querySelector(".progress"),
-  check = document.querySelector(".messageBox-content .check");
-  let timer1, timer2;
-
+function showStatus (message, type) { 
+  const messageText = document.querySelector(".status-message");
+  let timer1;
+  console.log("adding active status to message: ", messageText)
+  
   switch (type) {
     case "error": {
-      messageTitle.textContent = "Error"; 
-      progress.classList.add("error");
-      check.classList.add("error");
+      messageText.classList.remove("success");
+      messageText.classList.add("error");
       break;
     }
     case "success": {
-      messageTitle.textContent = "Success"; 
-      progress.classList.remove("error");
-      check.classList.remove("error");
+      messageText.classList.remove("error");
+      messageText.classList.add("success");
       break;
     }
   }
-
   messageText.textContent = message;
-  messageBox.classList.add("active");
-  progress.classList.add("active");
+  messageText.classList.add("active");
 
   timer1 = setTimeout(() => {
-    messageBox.classList.remove("active");
-  }, 5000);
-
-  timer2 = setTimeout(() => {
-    progress.classList.remove("active");
-  }, 5300);
-
-
-closeIcon.addEventListener("click", () => {
-  messageBox.classList.remove("active");
-
-  setTimeout(() => {
-    progress.classList.remove("active");
-  }, 300);
-
-  clearTimeout(timer1);
-  clearTimeout(timer2);
-});
+    messageText.classList.remove("active");
+  }, 5000); 
 
 }
 
@@ -190,11 +166,11 @@ function writeDB () {
     Date: myDate,
    })
     .then(() => {
-      messageBox(`${userName} have seen the lights`, "success");
+      showStatus(`${userName} have seen the lights`, "success");
       readDB();
     })
     .catch((error) => {
-      messageBox("Cannot update server. Come back on December 24th", "error");
+      showStatus("Server closed. Come back on December 24th", "error");
       console.error('Error: ', error);
     })
  
