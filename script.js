@@ -2,16 +2,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebas
 import { getFirestore, collection, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js';
 
 const firebaseConfig = {
-apiKey: "AIzaSyD6VlTT23jbJjfnf65kjypcdtHlt8oNRI8",
-authDomain: "winterbelss-e58ef.firebaseapp.com",
-projectId: "winterbelss-e58ef",
-storageBucket: "winterbelss-e58ef.appspot.com",
-messagingSenderId: "387239747463",
-appId: "1:387239747463:web:1904f16d989b0a82fc3d22",
-measurementId: "G-3FD72ZST5R"
+  apiKey: "AIzaSyD6VlTT23jbJjfnf65kjypcdtHlt8oNRI8",
+  authDomain: "winterbelss-e58ef.firebaseapp.com",
+  projectId: "winterbelss-e58ef",
+  storageBucket: "winterbelss-e58ef.appspot.com",
+  messagingSenderId: "387239747463",
+  appId: "1:387239747463:web:1904f16d989b0a82fc3d22",
+  measurementId: "G-3FD72ZST5R"
 };
 
-const app = initializeApp(firebaseConfig); 
+const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const UpdateDisplay = (() => {
@@ -20,99 +20,111 @@ const UpdateDisplay = (() => {
   const month = myDate.getMonth() + 1;
   const year = myDate.getFullYear();
 
- const updateDayLeft = () => {
-  const daysDefault = document.querySelectorAll('.js-daysDefault');
-  const daysContainer = document.getElementById('days-container');
-  const daysDigit = document.createElement('span');
-  daysDigit.className = "js-daysDefault font-['revans'] text-6xl bg-red-700 text-white relative h-20 w-16";
-  let daysCounter = day;
-
-   for (let i = month; i < 13; i++) {
-     let daysInMonth = new Date(year, i, 0).getDate();
-     if (i == month){
-       daysCounter = daysInMonth - daysCounter;
-     } else {
-       if (i==12) { 
-         daysInMonth = 25 
-       }
-       daysCounter += daysInMonth;
-       if (i >= 14) {
-         console.error ("Months counter overloaded.");  
-         return null;
-       }
-     }
-   }
-
-   daysDefault.forEach((defaultDays) => { 
-    defaultDays.remove();  
-  });
-  daysCounter = daysCounter.toString();
-  for (let i = 0; i < daysCounter.length; i++) {
-    if (i > 4) {return}
-    daysDigit.textContent = daysCounter[i];
-    daysContainer.appendChild(daysDigit.cloneNode(true));
+  const updateXmasProgress = (progress) => {
+    const progressLeft = Math.floor(Math.abs((progress - 1) * 100)).toString();
+    const xmasProgress = document.getElementById('xmas-progress');
+    xmasProgress.style.width = `${progressLeft}%`;
   }
- }
 
- const updateUserList = (userName, userDate) => {
-  const userList = document.querySelector('.user-list-container');
-  const defaultList = document.querySelectorAll('.user-list');
-  const userListDB = document.querySelector('.user-list-db');
-  const newUserData = document.createElement('p');
+  const updateDayLeft = () => {
+    const daysDefault = document.querySelectorAll('.js-daysDefault');
+    const daysContainer = document.getElementById('days-container');
+    const daysDigit = document.createElement('div');
+    const daysToXmas = 359;
+    let progressToXmas = 1;
 
-  const classDot = '<span class="text-sm text-red-500">✦</span>';
-  const className = `<span class="text-base uppercase text-red-700">${userName}</span>`
-  const classText = '<span class="text-gray-600 text-sm italic"> looked at the sky in — </span>'
-  const classDate = `<span class="text-xs"> ${userDate} </span>`;
+    daysDigit.className = "js-daysDefault font-['arial'] text-6xl bg-red-700 text-white flex justify-center items-center h-20 w-16 ";
+    let daysCounter = day;
 
-  newUserData.className = "text-left md:text-right";
-  newUserData.innerHTML = classDot + className + classText + classDate;
-  
-  defaultList.forEach((defaultlist) => {
-    defaultlist.remove();
-  });
+    for (let i = month; i < 13; i++) {
+      let daysInMonth = new Date(year, i, 0).getDate();
+      if (i == month) {
+        daysCounter = daysInMonth - daysCounter;
+      } else {
+        if (i == 12) {
+          daysInMonth = 25
+        }
+        daysCounter += daysInMonth;
+        if (i >= 14) {
+          console.error("Months counter overloaded.");
+          return null;
+        }
+      }
+    }
 
-  if (!userListDB) {
-    const newUserList = document.createElement('div');
-    newUserList.className = "user-list-db";
-    newUserList.appendChild(newUserData);
-    userList.appendChild(newUserList);
-  } else {
-    userListDB.appendChild(newUserData);
+    daysDefault.forEach((defaultDays) => {
+      defaultDays.remove();
+    });
+
+    progressToXmas = daysCounter / daysToXmas;
+    updateXmasProgress(progressToXmas);
+    daysCounter = daysCounter.toString();
+    for (let i = 0; i < daysCounter.length; i++) {
+      if (i > 4) { return }
+      daysDigit.innerHTML = `<span className="">${daysCounter[i]}</span>`;
+      daysContainer.appendChild(daysDigit.cloneNode(true));
+    }
   }
-  
-}
+
+  const updateUserList = (userName, userDate) => {
+    const userList = document.querySelector('.user-list-container');
+    const defaultList = document.querySelectorAll('.user-list');
+    const userListDB = document.querySelector('.user-list-db');
+    const newUserData = document.createElement('p');
+
+    const classDot = '<span class="text-sm text-red-500">✦</span>';
+    const className = `<span class="text-base uppercase text-red-700">${userName}</span>`
+    const classText = '<span class="text-gray-600 text-sm italic"> looked at the sky in — </span>'
+    const classDate = `<span class="text-xs"> ${userDate} </span>`;
+
+    newUserData.className = "text-left md:text-right";
+    newUserData.innerHTML = classDot + className + classText + classDate;
+
+    defaultList.forEach((defaultlist) => {
+      defaultlist.remove();
+    });
+
+    if (!userListDB) {
+      const newUserList = document.createElement('div');
+      newUserList.className = "user-list-db";
+      newUserList.appendChild(newUserData);
+      userList.appendChild(newUserList);
+    } else {
+      userListDB.appendChild(newUserData);
+    }
+
+  }
   const updateXmasCounter = () => {
     const xmasCounterDiv = document.getElementById("xmas-counter");
     const xmasCounterText = document.getElementById("xmas-counterText");
 
-    const appDay = 24, 
-    appMonth = 12, 
-    appYear = 2000;
+    const appDay = 24,
+      appMonth = 12,
+      appYear = 2023;
 
     let xmasCounter = year - appYear;
     let appDate = `${appDay}/${appMonth}/${appYear}`;
-    let appYears =  0;
+    let appYears = 0;
     let appMonths = month;
     let appDays = appMonths * 30;
-    if (xmasCounter > 1) { 
-      appYears =  xmasCounter - 1;
+    if (xmasCounter > 1) {
+      appYears = xmasCounter - 1;
       appMonths = appYears * 12;
       appDays = (appDays * 30) + 7;
     }
     xmasCounterDiv.textContent = `${xmasCounter}`;
-    xmasCounterText.textContent = `${appYears} years, ${appMonths} months, ${appDays} days since ${appDate}`  
- } 
+    xmasCounterText.innerHTML = `${appYears} years, ${appMonths} months, ${appDays} days <br> since ${appDate}`
+  }
 
- return {updateDayLeft, updateUserList, updateXmasCounter}
+  return { updateDayLeft, updateUserList, updateXmasCounter }
 
 })()
 
-function showStatus (message, type) { 
+function showStatus(message, type) {
   const messageText = document.querySelector(".status-message");
   let timer1;
   console.log("adding active status to message: ", messageText)
-  
+
   switch (type) {
     case "error": {
       messageText.classList.remove("success");
@@ -125,18 +137,20 @@ function showStatus (message, type) {
       break;
     }
   }
-  messageText.textContent = message;
-  messageText.classList.add("active");
+  messageText.innerHTML = message;
+  messageText.classList.add("fadeIn");
+  messageText.classList.remove("fadeOut");
 
   timer1 = setTimeout(() => {
-    messageText.classList.remove("active");
-  }, 5000); 
+    messageText.classList.add("fadeOut");
+    messageText.classList.remove("fadeIn");
+  }, 3000);
 
 }
 
 async function readDB() {
   try {
-    const userList = collection(db, 'userlist'); 
+    const userList = collection(db, 'userlist');
     const data = await getDocs(userList);
     data.forEach((user) => {
       let userName = "";
@@ -155,25 +169,31 @@ async function readDB() {
   }
 }
 
-function writeDB () {
+function writeDB() {
 
-   const userName = document.getElementById('checkin').value; 
-   const userList = collection(db, 'userlist');
-   const myDate = new Date();
+  const userName = document.getElementById('checkin').value;
+  const userList = collection(db, 'userlist');
+  const myDate = new Date();
+  const serverErrorMessage = `
+                <span class="text-xs font-normal font-['Lora'] text-gray-600">
+                <p>The ligthts are dim.</p>
+                <p>Come back in <span id="tooltip-daysLeft" class="font-bold">December</span> 24th.</p>
+</span>
+`
 
-   addDoc(userList, {
+  addDoc(userList, {
     Name: userName,
     Date: myDate,
-   })
+  })
     .then(() => {
       showStatus(`${userName} have seen the lights`, "success");
       readDB();
     })
     .catch((error) => {
-      showStatus("Server closed. Come back on December 24th", "error");
+      showStatus(serverErrorMessage);
       console.error('Error: ', error);
     })
- 
+
 
 }
 
