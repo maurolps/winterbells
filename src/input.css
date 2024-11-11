@@ -38,11 +38,24 @@ body{
 } 
 
 .status-message {
-  display: none;
+  visibility: hidden;
+  opacity: 0; 
   font-size: 0.75rem;
   font-style: italic;
   font-weight: 300;
 
+}
+
+.status-message.fadeIn {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 600ms;
+}
+
+.status-message.fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 200ms linear 200ms, opacity 200ms;
 }
 
 .status-message.active {
