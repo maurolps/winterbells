@@ -10,6 +10,8 @@
 
 body{
 
+ background-image: linear-gradient(to bottom , #04173c, #0a0a0a );
+  color: #f6cd0f !important;
   overflow-x: hidden;
 }
 

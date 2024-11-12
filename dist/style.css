@@ -700,8 +700,8 @@ html {
   width: 4rem;
 }
 
-.w-40 {
-  width: 10rem;
+.w-32 {
+  width: 8rem;
 }
 
 .w-6 {
@@ -726,6 +726,10 @@ html {
 
 .flex-col {
   flex-direction: column;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
@@ -768,14 +772,6 @@ html {
   border-bottom-width: 2px;
 }
 
-.border-l {
-  border-left-width: 1px;
-}
-
-.border-r {
-  border-right-width: 1px;
-}
-
 .border-dotted {
   border-style: dotted;
 }
@@ -800,12 +796,21 @@ html {
   background-color: rgb(185 28 28 / var(--tw-bg-opacity));
 }
 
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
 .p-1 {
   padding: 0.25rem;
 }
 
 .p-2 {
   padding: 0.5rem;
+}
+
+.p-\[4px\] {
+  padding: 4px;
 }
 
 .text-left {
@@ -816,16 +821,16 @@ html {
   text-align: center;
 }
 
-.text-start {
-  text-align: start;
-}
-
 .font-\[\'Lora\'\] {
   font-family: 'Lora';
 }
 
 .font-\[\'arial\'\] {
   font-family: 'arial';
+}
+
+.font-\[\'lora\'\] {
+  font-family: 'lora';
 }
 
 .font-\[\'revans\'\] {
@@ -887,6 +892,10 @@ html {
   text-transform: uppercase;
 }
 
+.lowercase {
+  text-transform: lowercase;
+}
+
 .italic {
   font-style: italic;
 }
@@ -930,12 +939,6 @@ html {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.shadow-sm {
-  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -951,6 +954,8 @@ html {
 }
 
 body{
+  background-image: linear-gradient(to bottom , #04173c, #0a0a0a );
+  color: #f6cd0f !important;
   overflow-x: hidden;
 }
 
@@ -975,6 +980,7 @@ body{
   max-height: 10rem;
   overflow: hidden;
   padding: 0.5rem;
+  padding-bottom: 1.5rem;
   -webkit-mask-image: linear-gradient(to bottom,transparent 0, black 28px, black calc(100% - 50px),transparent 100%);
           mask-image: linear-gradient(to bottom,transparent 0, black 28px, black calc(100% - 50px),transparent 100%);
 }
@@ -992,6 +998,7 @@ body{
 .status-message {
   visibility: hidden;
   opacity: 0;
+  padding-left: 1.5rem;
   font-size: 0.75rem;
   font-style: italic;
   font-weight: 300;
@@ -1006,7 +1013,7 @@ body{
 .status-message.fadeOut {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 200ms linear 200ms, opacity 200ms;
+  transition: visibility 600ms linear 600ms, opacity 600ms;
 }
 
 .status-message.active {
@@ -1019,6 +1026,12 @@ body{
 
 .status-message.error {
   color: red;
+}
+
+#xmas-progress {
+  background-color: #ffffff;
+  opacity: 1;
+  background: repeating-linear-gradient( -45deg, #b91c1c, #b91c1c 5px, #ffffff 5px, #ffffff 10px );
 }
 
 .hover\:text-red-700:hover {
