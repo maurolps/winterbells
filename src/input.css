@@ -9,6 +9,7 @@
 }
 
 body{
+
   overflow-x: hidden;
 }
 
@@ -29,7 +30,7 @@ body{
 }
 
   .user-list-container {
-    @apply p-2 max-h-40 overflow-hidden [mask-image:_linear-gradient(to_bottom,transparent_0,_black_28px,_black_calc(100%-50px),transparent_100%)]
+    @apply p-2 pb-6 max-h-40 overflow-hidden [mask-image:_linear-gradient(to_bottom,transparent_0,_black_28px,_black_calc(100%-50px),transparent_100%)]
   }
 
 @keyframes infinite-scroll {
@@ -40,6 +41,7 @@ body{
 .status-message {
   visibility: hidden;
   opacity: 0; 
+  padding-left: 1.5rem;
   font-size: 0.75rem;
   font-style: italic;
   font-weight: 300;
@@ -55,7 +57,7 @@ body{
 .status-message.fadeOut {
   visibility: hidden;
   opacity: 0;
-  transition: visibility 200ms linear 200ms, opacity 200ms;
+  transition: visibility 600ms linear 600ms, opacity 600ms;
 }
 
 .status-message.active {
@@ -68,4 +70,10 @@ body{
 
 .status-message.error {
   color: red;
+}
+
+#xmas-progress {
+  background-color: #ffffff;
+  opacity: 1;
+  background: repeating-linear-gradient( -45deg, #b91c1c, #b91c1c 5px, #ffffff 5px, #ffffff 10px );
 }
