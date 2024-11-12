@@ -1,29 +1,51 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
-import { getFirestore, collection, getDocs, addDoc } from 'https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js';
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD6VlTT23jbJjfnf65kjypcdtHlt8oNRI8",
-  authDomain: "winterbelss-e58ef.firebaseapp.com",
-  projectId: "winterbelss-e58ef",
-  storageBucket: "winterbelss-e58ef.appspot.com",
-  messagingSenderId: "387239747463",
-  appId: "1:387239747463:web:1904f16d989b0a82fc3d22",
-  measurementId: "G-3FD72ZST5R"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+import { loadDB, saveDB } from './firebase.js';
+const isXmas = true;
 
 const UpdateDisplay = (() => {
   const myDate = new Date();
   const day = myDate.getDate();
-  const month = myDate.getMonth() + 1;
+  const month = myDate.getMonth() + 1; // month is zero based
   const year = myDate.getFullYear();
+  const appDate = '2023-12-24';
+  const appDateStr = '24/12/2023'
+  // const isXmas = (day === 24 && month === 12) || (day === 25 && month === 12);
+
+  console.log(day, month, year);
+  if (isXmas) {
+    const xmasTitle = document.getElementById('xmas-title');
+    xmasTitle.textContent = 'MERRY CHRISTMAS';
+
+    const xmasSubTitle = document.getElementById('xmas-subtitle');
+    xmasSubTitle.textContent = 'SANTA IS HERE';
+    console.log('Merry Christmas!');
+  }
 
   const updateXmasProgress = (progress) => {
     const progressLeft = Math.floor(Math.abs((progress - 1) * 100)).toString();
     const xmasProgress = document.getElementById('xmas-progress');
     xmasProgress.style.width = `${progressLeft}%`;
+  }
+
+  const xmasCounter = () => {
+    const firstDate = new Date(appDate);
+    const firstYear = firstDate.getFullYear();
+    const firstMonth = firstDate.getMonth() + 1;
+    const firstDay = firstDate.getDate();
+
+    let years = year - firstYear;
+    let months = month - firstMonth;
+    let days = day - firstDay;
+
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+    if (days < 0) {
+      months--;
+      days += new Date(year, month, 0).getDate();
+    }
+
+    return { years, months, days };
   }
 
   const updateDayLeft = () => {
@@ -32,6 +54,14 @@ const UpdateDisplay = (() => {
     const daysDigit = document.createElement('div');
     const daysToXmas = 359;
     let progressToXmas = 1;
+
+    if (isXmas) {
+      const xmasDaysText = document.getElementById('xmas-days-text');
+      daysContainer.style.display = 'none';
+      xmasDaysText.style.display = 'none';
+      updateXmasProgress(10);
+      return null;
+    }
 
     daysDigit.className = "js-daysDefault font-['arial'] text-6xl bg-red-700 text-white flex justify-center items-center h-20 w-16 ";
     let daysCounter = day;
@@ -73,7 +103,7 @@ const UpdateDisplay = (() => {
     const newUserData = document.createElement('p');
 
     const classDot = '<span class="text-sm text-red-500">✦</span>';
-    const className = `<span class="text-base uppercase text-red-700">${userName}</span>`
+    const className = `<span class="text-base lowercase text-red-700">${userName}</span>`
     const classText = '<span class="text-gray-600 text-sm italic"> looked at the sky in — </span>'
     const classDate = `<span class="text-xs"> ${userDate} </span>`;
 
@@ -98,22 +128,10 @@ const UpdateDisplay = (() => {
     const xmasCounterDiv = document.getElementById("xmas-counter");
     const xmasCounterText = document.getElementById("xmas-counterText");
 
-    const appDay = 24,
-      appMonth = 12,
-      appYear = 2023;
+    const { years, months, days } = xmasCounter();
 
-    let xmasCounter = year - appYear;
-    let appDate = `${appDay}/${appMonth}/${appYear}`;
-    let appYears = 0;
-    let appMonths = month;
-    let appDays = appMonths * 30;
-    if (xmasCounter > 1) {
-      appYears = xmasCounter - 1;
-      appMonths = appYears * 12;
-      appDays = (appDays * 30) + 7;
-    }
-    xmasCounterDiv.textContent = `${xmasCounter}`;
-    xmasCounterText.innerHTML = `${appYears} years, ${appMonths} months, ${appDays} days <br> since ${appDate}`
+    xmasCounterDiv.textContent = `1`;
+    xmasCounterText.innerHTML = `${years} years, ${months} months, ${days} days <br> since ${appDateStr}`
   }
 
   return { updateDayLeft, updateUserList, updateXmasCounter }
@@ -123,7 +141,6 @@ const UpdateDisplay = (() => {
 function showStatus(message, type) {
   const messageText = document.querySelector(".status-message");
   let timer1;
-  console.log("adding active status to message: ", messageText)
 
   switch (type) {
     case "error": {
@@ -148,21 +165,23 @@ function showStatus(message, type) {
 
 }
 
+function transformDate(date) {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+  return `'${day} • '${month} • '${year}`
+}
+
 async function readDB() {
   try {
-    const userList = collection(db, 'userlist');
-    const data = await getDocs(userList);
-    data.forEach((user) => {
-      let userName = "";
-      let day = user.data().Date.toDate().getDate();
-      let month = user.data().Date.toDate().getMonth() + 1;
-      const year = user.data().Date.toDate().getFullYear();
+    const data = await loadDB();
 
-      day = String(day).padStart(2, '0');
-      month = String(month).padStart(2, '0');
-      userName = user.data().Name.toUpperCase();
-      UpdateDisplay.updateUserList(userName, `'${day} • '${month} • '${year}`);
+    data.forEach((user) => {
+      const userDate = transformDate(user.data().Date.toDate());
+      const userName = user.data().Name;
+      UpdateDisplay.updateUserList(userName, userDate);
     });
+
 
   } catch (error) {
     console.error('Error: ', error);
@@ -172,22 +191,17 @@ async function readDB() {
 function writeDB() {
 
   const userName = document.getElementById('checkin').value;
-  const userList = collection(db, 'userlist');
   const myDate = new Date();
   const serverErrorMessage = `
-                <span class="text-xs font-normal font-['Lora'] text-gray-600">
-                <p>The ligthts are dim.</p>
-                <p>Come back in <span id="tooltip-daysLeft" class="font-bold">December</span> 24th.</p>
+                <span class="text-sm font-normal font-['Lora'] text-gray-600 ">
+                <p>The lights are dim.</p>
+                <p>Come back on <span id="tooltip-daysLeft" class="font-bold">Christmas</span> eve.</p>
 </span>
 `
-
-  addDoc(userList, {
-    Name: userName,
-    Date: myDate,
-  })
+  saveDB(userName, myDate)
     .then(() => {
       showStatus(`${userName} have seen the lights`, "success");
-      readDB();
+      UpdateDisplay.updateUserList(userName, transformDate(myDate));
     })
     .catch((error) => {
       showStatus(serverErrorMessage);
