@@ -1,5 +1,5 @@
 import { loadDB, saveDB } from './db.js';
-const isXmas = true;
+//const isXmas = true;
 
 const UpdateDisplay = (() => {
   const myDate = new Date();
@@ -8,7 +8,7 @@ const UpdateDisplay = (() => {
   const year = myDate.getFullYear();
   const appDate = '2023-12-24';
   const appDateStr = '24/12/2023'
-  // const isXmas = (day === 24 && month === 12) || (day === 25 && month === 12);
+  const isXmas = (day === 24 && month === 12) || (day === 25 && month === 12);
 
   console.log(day, month, year);
   if (isXmas) {
