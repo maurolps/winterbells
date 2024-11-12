@@ -1,4 +1,4 @@
-import { loadDB, saveDB } from './firebase.js';
+import { loadDB, saveDB } from './db.js';
 const isXmas = true;
 
 const UpdateDisplay = (() => {
