@@ -6,9 +6,6 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.cdnfonts.com/css/revans" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/lora" rel="stylesheet">
-  <link href="https://fonts.cdnfonts.com/css/josefin-sans" rel="stylesheet">
-
-  
 
   <script type="module" src="script.js" defer></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
@@ -18,26 +15,26 @@
   </style>
 </head>
 <body class = "min-h-screen flex flex-col items-center"> 
-  <section id="home" class="w-full max-w-screen-2xl shadow">
+  <section id="home" class="w-full">
     <div id="xmas-progress" class="bg-red-500 w-0 h-full p-1 transition-all duration-1000 ease-in-out"></div>
   </section>
   <main class="flex flex-col flex-grow w-full max-w-screen-2xl ">
     <div class="flex flex-grow flex-col gap-10 sm:gap-20 justify-center items-center">
       <div class="container flex flex-col text-center mb-10">
         <div class="">
-          <p class="font-['revans'] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-5 mb-4">CHRISTMAS IS COMIN'</p>
+          <p id="xmas-title" class="font-['revans'] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-5 mb-4">CHRISTMAS IS COMIN'</p>
         </div>
         <div class="">
-          <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4x">THE BELLS WILL RING IN</p>
+          <p id="xmas-subtitle" class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4x">THE BELLS WILL RING IN</p>
           <!-- <p id="days-left" class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">10 DAYS</p> -->
 
           
-          <div id="days-container" class="mt-8 relative flex justify-center gap-1">
+          <div id="days-container" class="mt-8 relative flex justify-center gap-1 font-['lora']">
             <span class="js-daysDefault font-['revans'] text-6xl bg-red-700  text-white relative h-20 w-16">1</span>
             <span class="js-daysDefault font-['revans'] text-6xl bg-red-700  text-white relative h-20 w-16">9</span>
             <span class="js-daysDefault font-['revans'] text-6xl bg-red-700  text-white relative h-20 w-16">9</span>
           </div>
-          <p class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">DAYS</p>
+          <p id="xmas-days-text" class="font-['revans'] text-1xl md:text-2xl lg:text-3xl xl:text-4xl">DAYS</p>
 
         </div>
       </div>
@@ -47,9 +44,8 @@
           <div class="relative flex justify-center">
             <div class="tooltip p-2 ">
               <img src="./assets/info.svg" alt="infobox" class="w-6 relative -top-3 text-red-500">
-              <div class="tooltip-info text-xs font-normal text-start w-40 z-10  p-2 rounded-lg absolute bottom-[130%] -left-[10%] mr-14 hidden font-['Lora'] shadow text-gray-600">
-                <p>The ligthts are dim.</p>
-                <p>Come back in <span id="tooltip-daysLeft" class="font-bold">December</span> 24th.</p>
+              <div class="tooltip-info text-xs font-normal text-center w-32 z-10 p-[4px] rounded-lg absolute bottom-[130%] -left-[10%] mr-14 hidden font-['Lora'] shadow text-gray-600">
+                <p>Have you been good?</p>
                 <svg class="absolute text-slate-600 h-4 w-10 left-3 top-full" x="0px" y="0px" viewBox="0 0 255 255" xml:space="preserve">
                 <polygon fill="none" stroke="currentColor" stroke-width="2" points="0,0 127.5,127.5 255,0"/>
                 </svg>
@@ -67,29 +63,29 @@
         <!-- Status message -->
         <div class="status-container h-5 mb-6 sm:my-3">
           <div class="status-message">
-            Server rejected. Come back on December 24th.
+            Server rejected. Come back on Christmas eve.
           </div>
         </div>
       </div>
     </div>
   </main>
-  <div class="flex flex-col w-full max-w-screen-2xl md:flex-row gap-5  md:justify-between text-xs items-center">
+  <div class="flex flex-col w-full max-w-screen-2xl md:flex-row gap-5  md:justify-between text-xs items-end">
     <div class="m-5 font-['Lora'] flex gap-2 flex-col justify-center items-center text-sm sm:text-left  italic text-gray-600 tracking-wide">
-      <div><i id= "xmas-counter" class="p-1 text-xs border border-dotted border-black font-bold">45</i> CHRISTMAS</div>
+      <div><i id= "xmas-counter" class="p-1 text-xs border border-dotted border-black font-bold text-red-700">45</i> CHRISTMAS</div>
       <span id="xmas-counterText" class="text-sm text-center">
        12 years, 84 months, 666 days since 01/12/1996. 
       </span>
     </div>
-    <div class="user-list-container font-['Lora'] text-base leading-relaxed">
+    <div class= "bg-white mb-6">
+    <div class="user-list-container font-['Lora'] text-base leading-relaxed flex justify-center items-center">
       <!-- Default User list. -->
       <div class="user-list m-5"> 
         <p class="text-center md:text-right"><span class="text-sm text-red-500">✦</span> <span class="text-base uppercase text-red-700">bira</span><span class="text-gray-600 text-sm italic"> looked at the sky in — </span><span class="text-xs">'03 • '06 • '11 </span></p>
         <p class="text-center md:text-left"><span class="text-sm text-red-500">✦</span> <span class="text-base uppercase text-red-700">bira</span><span class="text-gray-600 text-sm italic"> looked at the sky in — </span><span class="text-xs">'03 • '06 • '11 </span></p>
         <p class="text-center md:text-left"><span class="text-sm text-red-500">✦</span> <span class="text-base uppercase text-red-700">bira</span><span class="text-gray-600 text-sm italic"> looked at the sky in — </span><span class="text-xs">'03 • '06 • '11 </span></p>
-        <p class="text-center md:text-left"><span class="text-sm text-red-500">✦</span> <span class="text-base uppercase text-red-700">bira</span><span class="text-gray-600 text-sm italic"> looked at the sky in — </span><span class="text-xs">'03 • '06 • '11 </span></p>
-       
-      
+        <p class="text-center md:text-left"><span class="text-sm text-red-500">✦</span> <span class="text-base uppercase text-red-700">bira</span><span class="text-gray-600 text-sm italic"> looked at the sky in — </span><span class="text-xs">'03 • '06 • '11 </span></p> 
       </div>
+    </div>
     </div>
   </div>
 </body>
